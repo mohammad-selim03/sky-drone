@@ -1,30 +1,24 @@
-'use client';
+"use client";
 
-import { useEffect, useRef } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { Suspense } from 'react';
-import { DroneModel } from './DroneModel';
-import gsap from 'gsap';
-import { OrbitControls } from '@react-three/drei';
+import { useEffect, useRef } from "react";
+import { Canvas } from "@react-three/fiber";
+import { DroneModel } from "./DroneModel";
+import { Suspense } from "react";
+import gsap from "gsap";
 
 export default function FlyingDroneOverlay() {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const droneRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        containerRef.current,
+        droneRef.current,
+        { x: "-10vw", y: "25vh", rotate: 0 },
         {
-          xPercent: -100,
-          y: '10vh',
-          rotate: 0,
-        },
-        {
-          xPercent: 100,
-          y: '20vh',
-          rotate: 10,
+          x: "75vw", // Never leave screen
+          y: "22vh",
           duration: 10,
-          ease: 'power1.inOut',
+          ease: "power2.inOut",
           repeat: -1,
           yoyo: true,
         }
@@ -36,17 +30,15 @@ export default function FlyingDroneOverlay() {
 
   return (
     <div
-      ref={containerRef}
-      className="fixed top-0 left-0 w-[300px] h-[300px] z-[9999] pointer-events-none"
-      style={{ willChange: 'transform' }}
+      ref={droneRef}
+      className="fixed top-0 left-0 w-[320px] h-[320px] z-[9999] pointer-events-none"
     >
       <Canvas camera={{ position: [0, 0, 8] }}>
-        <ambientLight intensity={0.7} />
-        <directionalLight position={[5, 5, 5]} intensity={1.2} />
+        <ambientLight intensity={0.8} />
+        <directionalLight position={[5, 5, 5]} />
         <Suspense fallback={null}>
-          <DroneModel position={[0, 0, 0]} />
+          <DroneModel />
         </Suspense>
-        <OrbitControls enableZoom={false} enablePan={false} />
       </Canvas>
     </div>
   );
