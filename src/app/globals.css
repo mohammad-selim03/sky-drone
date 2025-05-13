@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -41,8 +40,7 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-}
-
+} 
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
