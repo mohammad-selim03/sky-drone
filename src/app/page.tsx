@@ -1,3 +1,4 @@
+import AIAssistant from "@/components/AiAssistant";
 import DroneHero from "@/components/DroneHero";
 import HeroSection from "@/components/Home/HeroSection";
 import ProductGrid from "@/components/ProductCard";
@@ -10,6 +11,7 @@ export default function HomePage() {
       <DroneHero />
       <HeroSection />
       <ProductGrid />
+      <AIAssistant />
     </main>
   );
 }

@@ -3,6 +3,7 @@ import "./globals.css";
 import { Bricolage_Grotesque } from "next/font/google";
 import FlyingDroneOverlay from "@/components/FlyingDroneOverly";
 import ClientOnly from "@/components/ClientOnly";
+import Header from "@/components/shared/Header";
 
 const inter = Bricolage_Grotesque({ subsets: ["latin"] });
 
@@ -20,7 +21,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} bg-background text-foreground`}>
-      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <Header />
           {children}
           <ClientOnly>
             <FlyingDroneOverlay />
